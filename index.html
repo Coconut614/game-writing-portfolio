@@ -5,47 +5,280 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>叶静敏 · 游戏文案作品集</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-            line-height: 1.6;
-            color: #24292e;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        a { color: #0366d6; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        h1 { border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
-        .contact { background: #f6f8fa; padding: 1rem; border-radius: 6px; margin-top: 2rem; }
-        @media (max-width: 600px) { body { padding: 1rem; } }
+
+        body {
+            background-color: #faf7f0;
+            background-image: radial-gradient(circle at 25% 40%, rgba(200, 180, 140, 0.03) 2%, transparent 2.5%);
+            background-size: 28px 28px;
+            font-family: 'Georgia', 'Times New Roman', '宋体', 'SimSun', serif;
+            color: #3b2e24;
+            line-height: 1.7;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            background: rgba(255, 252, 245, 0.85);
+            border-radius: 4px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05), 0 0 0 1px #e9e0d3 inset;
+            padding: 2.5rem 2rem;
+        }
+
+        /* 头部 文人题签风格 */
+        .header {
+            text-align: center;
+            margin-bottom: 2.8rem;
+            border-bottom: 1px solid #ddd0bc;
+            padding-bottom: 1.5rem;
+        }
+        .name {
+            font-size: 2.8rem;
+            font-weight: normal;
+            letter-spacing: 4px;
+            color: #6b4c3b;
+            font-family: 'Times New Roman', '宋体', serif;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.02);
+        }
+        .subtitle {
+            font-size: 0.95rem;
+            color: #8b7355;
+            letter-spacing: 2px;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        .contact {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: #9b8568;
+            font-family: 'Georgia', monospace;
+        }
+        .contact span {
+            border-right: 1px solid #e2d4c4;
+            padding-right: 2rem;
+        }
+        .contact span:last-child {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        /* 章节标题 仿古籍卷边 */
+        .section {
+            margin-bottom: 3rem;
+        }
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: normal;
+            font-family: 'Times New Roman', '宋体', serif;
+            letter-spacing: 2px;
+            color: #8b5a2b;
+            border-left: 3px solid #c2a575;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* 卡片式 仿信笺 */
+        .project-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .project-card {
+            background: #fffef9;
+            border: 1px solid #e2d6c8;
+            border-radius: 12px;
+            padding: 1.6rem 2rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .project-card:hover {
+            border-color: #c2aa85;
+            box-shadow: 0 6px 14px rgba(88, 57, 39, 0.08);
+            background: #ffffff;
+        }
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            font-family: 'Times New Roman', serif;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            color: #5c3e2b;
+        }
+        .project-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            background: #f0e7db;
+            color: #8b694c;
+            border-radius: 30px;
+            padding: 0.2rem 0.8rem;
+            margin-left: 0.8rem;
+            vertical-align: middle;
+            font-style: normal;
+            font-family: monospace;
+        }
+        .project-role {
+            font-size: 0.85rem;
+            color: #b2977a;
+            margin-bottom: 1rem;
+            border-left: 2px solid #e5d5c0;
+            padding-left: 0.8rem;
+            font-style: italic;
+        }
+        .project-desc {
+            margin-bottom: 1.2rem;
+            color: #4f4238;
+            text-align: justify;
+        }
+        .project-link {
+            display: inline-block;
+            background: none;
+            border: 1px solid #cbbdab;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            color: #7c6352;
+            transition: all 0.2s;
+            font-family: monospace;
+        }
+        .project-link:hover {
+            background-color: #f2ece4;
+            border-color: #9a846a;
+            color: #4b3624;
+        }
+
+        /* 文案片段 更简约 */
+        .writing-samples {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.2rem;
+            margin-top: 0.5rem;
+        }
+        .writing-item {
+            background: #fefcf8;
+            border: 1px solid #e8dfd3;
+            border-radius: 24px;
+            padding: 1rem 1.4rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+        }
+        .writing-item:hover {
+            background: #fffcf5;
+            border-color: #cbb282;
+            transform: translateY(-2px);
+        }
+        .writing-item-title {
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.2rem;
+            color: #6e4e38;
+        }
+        .writing-item-meta {
+            font-size: 0.7rem;
+            color: #bcab95;
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed #ddd0c0;
+            font-size: 0.75rem;
+            color: #b9ac99;
+            font-family: monospace;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.5rem;
+            }
+            .name {
+                font-size: 2rem;
+            }
+            .project-card {
+                padding: 1.2rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- 这里是你的作品集内容 ▼ -->
-    <h1>叶静敏 · 游戏文案作品集</h1>
-    <p><strong>四川大学汉语言文学 | 互动叙事作者 | 五万字游戏文本落地经验</strong></p>
-
-    <h2>🎮 在线试玩</h2>
-    <ul>
-        <li><strong><a href="艾玛.html">《艾玛》——文学改编互动叙事游戏</a></strong><br>
-        基于福楼拜《包法利夫人》改编，36个行动点，6种结局，五万字文本。</li>
-    </ul>
-
-    <h2>📄 策划案</h2>
-    <ul>
-        <li><a href="策划案-《渊底回响》-PPT.pdf">《渊底回响》Roguelite 策划案（PPT）</a></li>
-    </ul>
-
-    <h2>✍️ 文案样本（陆续添加）</h2>
-    <ul>
-        <li>公众号文章节选（待上传）</li>
-        <li>短篇同人片段（待上传）</li>
-    </ul>
-
-    <div class="contact">
-        <strong>📫 联系方式</strong><br>
-        邮箱：3161451324@qq.com<br>
-        电话：18589866951
+<div class="container">
+    <div class="header">
+        <div class="name">叶静敏</div>
+        <div class="subtitle">游戏文案 · 叙事设计 · 汉语言文学</div>
+        <div class="contact">
+            <span>📖 3161451324@qq.com</span>
+            <span>✍️ 18589866951</span>
+            <span>🎋 四川大学 · 2027</span>
+        </div>
     </div>
+
+    <!-- 游戏叙事作品 -->
+    <div class="section">
+        <div class="section-title">· 交互叙事 ·</div>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-title">《艾玛》<span class="project-tag">独立 · 五万字文本</span></div>
+                <div class="project-role">全文案 · 分支叙事 · 系统设计</div>
+                <div class="project-desc">
+                    基于福楼拜《包法利夫人》的交互式改编。36个行动点，6种结局，将“浪漫/清醒/堕落/意义”转化为属性系统。通过对白与抉择，重现十九世纪女性精神困境。
+                </div>
+                <a class="project-link" href="艾玛.html" target="_blank">🎭 在线试玩 →</a>
+            </div>
+            <div class="project-card">
+                <div class="project-title">《渊底回响》<span class="project-tag">团队 · Roguelite</span></div>
+                <div class="project-role">音乐制作 & 核心策划 / 世界观撰写</div>
+                <div class="project-desc">
+                    深渊题材资源管理游戏。独立完成8首BGM及全部音效，参与“风险决策”“诅咒系统”设计，撰写遗物描述及随机事件文案，主题为“管理即取舍”。
+                </div>
+                <a class="project-link" href="策划案-《渊底回响》-PPT.pdf" target="_blank">📜 策划案 →</a>
+            </div>
+            <div class="project-card">
+                <div class="project-title">《世说·风雅集》<span class="project-tag">独立 · 卡牌策略</span></div>
+                <div class="project-role">全案设计 & 文案撰写</div>
+                <div class="project-desc">
+                    魏晋名士主题卡牌。“风骨/雅量”双资源机制，64张卡牌技能均化用《世说新语》典故（如“青白眼”“坦腹东床”），完成卡牌文案与实体化制作。
+                </div>
+                <a class="project-link" href="#" target="_blank">🏮 设计稿待公开 →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 文案样本 -->
+    <div class="section">
+        <div class="section-title">· 笔耕录 ·</div>
+        <div class="writing-samples">
+            <a href="#" class="writing-item">
+                <div class="writing-item-title">《艾玛· 砒霜独白》</div>
+                <div class="writing-item-meta">分支选段 · 内心流亡</div>
+            </a>
+            <a href="#" class="writing-item">
+                <div class="writing-item-title">公众号 · 游戏选择与包法利夫人</div>
+                <div class="writing-item-meta">叙事分析 · 3500字</div>
+            </a>
+            <a href="#" class="writing-item">
+                <div class="writing-item-title">短篇同人 · 暮色荣镇</div>
+                <div class="writing-item-meta">场景摹写 · 氛围叙事</div>
+            </a>
+        </div>
+        <p style="font-size: 0.75rem; color: #bcab9a; margin-top: 1rem; text-align: right;">—— 更多精选文本，欢迎留言索取 ——</p>
+    </div>
+
+    <footer>
+        叶静敏 · 游戏文案作品集 · 丙午年
+    </footer>
+</div>
 </body>
 </html>
