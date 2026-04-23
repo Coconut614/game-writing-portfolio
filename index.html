@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>叶静敏 · 作品集</title>
+    <title>叶静敏 · 游戏文案作品集</title>
     <style>
         * {
             margin: 0;
@@ -20,13 +20,12 @@
             line-height: 1.7;
         }
 
-        /* 侧边栏 + 主内容 布局 */
         .wrapper {
             display: flex;
             min-height: 100vh;
         }
 
-        /* ========= 左侧索引栏（古典优雅） ========= */
+        /* 左侧索引栏 */
         .sidebar {
             width: 270px;
             background: rgba(255, 252, 245, 0.96);
@@ -109,7 +108,7 @@
             padding-top: 1rem;
         }
 
-        /* ========= 右侧主内容 ========= */
+        /* 右侧主内容 */
         .main-content {
             flex: 1;
             margin-left: 270px;
@@ -117,7 +116,6 @@
             max-width: calc(100% - 270px);
         }
 
-        /* 保留原有的古典卡片样式 */
         .section {
             margin-bottom: 3rem;
             background: rgba(255, 252, 245, 0.7);
@@ -212,7 +210,6 @@
             padding-top: 1.5rem;
         }
 
-        /* 移动端适配：侧边栏变顶部 */
         @media (max-width: 760px) {
             .wrapper {
                 flex-direction: column;
@@ -258,7 +255,6 @@
             <li class="nav-item"><a href="#interactive">🎭 在线试玩 · 交互叙事</a></li>
             <li class="nav-item"><a href="#design">📜 策划案 / 设计文档</a></li>
             <li class="nav-item"><a href="#articles">✍️ 公众号 · 文章</a></li>
-            <li class="nav-item"><a href="#writing">🍃 短篇 · 同人片段</a></li>
             <li class="nav-item"><a href="#music">🎵 原创音乐 · 游戏BGM</a></li>
             <li class="nav-item"><a href="#misc">⚙️ 下载 · 其他资源</a></li>
         </ul>
@@ -297,39 +293,6 @@
                 <div class="card">
                     <div class="card-title">《世说·风雅集》卡牌设计文档</div>
                     <div class="card-meta">魏晋名士 · 策略卡牌 | 64张卡牌</div>
-                    <div class="card-desc">双资源机制，技能典故化用为卡牌效果，卡牌实体化已完成。</div>
-                    <a class="card-link" href="#" target="_blank">🏮 设计稿待公开 →</a>
-                </div>
-            </div>
-        </section>
-
-    <main class="main-content">
-        <!-- 交互叙事 / 在线游戏 -->
-        <section id="interactive" class="section">
-            <div class="section-title">🎭 在线试玩 · 交互叙事</div>
-            <div class="card-list">
-                <div class="card">
-                    <div class="card-title">《艾玛》<span class="badge">HTML5 · 浏览器可直接游玩</span></div>
-                    <div class="card-meta">文学改编 | 36个行动点 · 6种结局 | 2万字文本</div>
-                    <div class="card-desc">基于福楼拜《包法利夫人》，将浪漫/清醒/堕落等属性化为选择机制。个人全栈完成全部文案与Twine开发。</div>
-                    <a class="card-link" href="艾玛.html" target="_blank">🎮 在线试玩 →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- 策划案 / 设计文档 -->
-        <section id="design" class="section">
-            <div class="section-title">📜 策划案 & 设计文档</div>
-            <div class="card-list">
-                <div class="card">
-                    <div class="card-title">《渊底回响》完整策划案</div>
-                    <div class="card-meta">Game Jam 项目 · 资源管理 · 小队探索</div>
-                    <div class="card-desc">包含核心玩法、完整基地与科技树等系统设计。本人负责音乐制作及部分世界观文案。</div>
-                    <a class="card-link" href="游戏策划案《渊底回响》PPT.pptx" target="_blank">📄 下载PPT →</a>
-                </div>
-                <div class="card">
-                    <div class="card-title">《世说·风雅集》卡牌设计文档</div>
-                    <div class="card-meta">魏晋名士 · 策略卡牌 | 64张卡牌</div>
                     <div class="card-desc">双资源机制，技能典故化用为卡牌效果，卡牌实体化已完成。12张锦囊卡完整效果附出处。</div>
                     <a class="card-link" href="shishuo_game_design.html" target="_blank">🏮 查看完整设计 →</a>
                 </div>
@@ -340,35 +303,30 @@
         <section id="articles" class="section">
             <div class="section-title">✍️ 公众号 · 游戏评论与叙事分析</div>
             <div class="card-list">
-                <!-- 1. 苏丹的游戏 -->
                 <div class="card">
                     <div class="card-title">🎴 《苏丹的游戏》：当卡牌游戏拥有讲故事的可能</div>
                     <div class="card-meta">像素旷野 · 独立分析 · 2025</div>
                     <div class="card-desc">探讨卡牌游戏叙事机制的理论框架，分析《苏丹的游戏》如何将故事内化为机制本身，完成“革命线”的沉重清算。</div>
                     <a class="card-link" href="articles/sultan_game_analysis.html" target="_blank">📖 阅读全文 →</a>
                 </div>
-                <!-- 2. 恋爱游戏卖的是什么 -->
                 <div class="card">
                     <div class="card-title">📖 恋爱游戏卖的是什么：《无法触碰的掌心》与国乙的两种生产逻辑</div>
                     <div class="card-meta">像素旷野 · 2025</div>
                     <div class="card-desc">深入分析女性向恋爱游戏的设计底层逻辑，对比“关系推进”与“角色内容切片”两种核心模式。</div>
                     <a class="card-link" href="articles/love_game_analysis.html" target="_blank">📖 阅读全文 →</a>
                 </div>
-                <!-- 3. 延迟正在毁掉《燕云十六声》 -->
                 <div class="card">
                     <div class="card-title">⚔️ 延迟正在毁掉《燕云十六声》</div>
                     <div class="card-meta">像素旷野 · 2025</div>
                     <div class="card-desc">从战斗底层逻辑出发，分析网络延迟如何破坏竞技公平性，并探讨网易长期存在的服务器架构问题。</div>
                     <a class="card-link" href="articles/yanyun_delay.html" target="_blank">📖 阅读全文 →</a>
                 </div>
-                <!-- 4. 霍格沃茨之遗 -->
                 <div class="card">
                     <div class="card-title">🪄 《霍格沃茨之遗》：走进魔法世界，哈迷等了二十年</div>
                     <div class="card-meta">像素旷野 · 2025</div>
                     <div class="card-desc">解析《霍格沃茨之遗》的设计逻辑、IP改编策略，以及为何哈利波特IP二十年后才诞生真正3A爆款。</div>
                     <a class="card-link" href="articles/hogwarts_legacy.html" target="_blank">📖 阅读全文 →</a>
                 </div>
-                <!-- 5. 底特律·变人与量子梦 -->
                 <div class="card">
                     <div class="card-title">🤖 从《底特律·变人》到量子梦的破碎：一个第九艺术的殉道者</div>
                     <div class="card-meta">像素旷野 · 2025</div>
@@ -413,6 +371,9 @@
         </section>
 
         <footer>
-            叶静敏 · 作品集 · 丙午年 · 持续更新
+            叶静敏 · 游戏文案作品集 · 丙午年 · 持续更新
         </footer>
     </main>
+</div>
+</body>
+</html>
