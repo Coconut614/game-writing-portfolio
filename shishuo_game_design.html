@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《世说·风雅集》卡牌游戏设计文档 · 叶静敏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #faf7f0;
+            background-image: radial-gradient(circle at 25% 40%, rgba(200, 180, 140, 0.03) 2%, transparent 2.5%);
+            background-size: 28px 28px;
+            font-family: 'Georgia', 'Times New Roman', '宋体', 'SimSun', serif;
+            color: #3b2e24;
+            line-height: 1.7;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 252, 245, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05), 0 0 0 1px #e9e0d3 inset;
+            padding: 2.5rem 2rem;
+        }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: normal;
+            font-family: 'Times New Roman', serif;
+            color: #6b4c3b;
+            border-left: 3px solid #cfbb9e;
+            padding-left: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            font-size: 0.9rem;
+            color: #b29a7c;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #e2d6c8;
+            padding-bottom: 0.5rem;
+        }
+        h2 {
+            font-size: 1.4rem;
+            font-weight: normal;
+            color: #8b5a2b;
+            margin: 1.5rem 0 1rem;
+            border-left: 2px solid #cfbb9e;
+            padding-left: 0.8rem;
+        }
+        h3 {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #7a5a3e;
+            margin: 1rem 0 0.3rem;
+        }
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        .rule-list, .card-list {
+            margin: 0.5rem 0 0.5rem 1.5rem;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .character-card {
+            background: #fffefb;
+            border: 1px solid #e2d6c8;
+            border-radius: 16px;
+            padding: 1rem;
+            transition: 0.2s;
+        }
+        .character-card:hover {
+            border-color: #cdb697;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .character-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #6b4c3b;
+            border-bottom: 1px dotted #e2d6c8;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.2rem;
+        }
+        .stats {
+            font-size: 0.85rem;
+            color: #9c7e60;
+            margin-bottom: 0.5rem;
+        }
+        .skill {
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+        }
+        .skill-name {
+            font-weight: bold;
+            color: #8b5a2b;
+        }
+        .quote {
+            font-style: italic;
+            color: #bcab98;
+            font-size: 0.75rem;
+            border-left: 2px solid #e2d6c8;
+            padding-left: 0.5rem;
+            margin-top: 0.3rem;
+        }
+        .trick-card {
+            background: #fffefb;
+            border-left: 3px solid #cfbb9e;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.8rem;
+            border-radius: 8px;
+        }
+        .trick-name {
+            font-weight: bold;
+            color: #8b5a2b;
+            margin-bottom: 0.2rem;
+        }
+        .back-link {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2d6c8;
+            text-align: right;
+        }
+        .back-link a {
+            color: #9c7e60;
+            text-decoration: none;
+            border-bottom: 1px dotted #cfbb9e;
+            font-size: 0.85rem;
+            margin-left: 1rem;
+        }
+        .back-link a:hover {
+            color: #624c38;
+            border-bottom-color: #624c38;
+        }
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #cbb99f;
+        }
+        @media (max-width: 700px) {
+            .container { padding: 1.5rem; }
+            h1 { font-size: 1.5rem; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>《世说·风雅集》</h1>
+    <div class="subtitle">魏晋名士主题策略卡牌游戏 · 完整设计文档</div>
+
+    <h2>🎴 游戏核心概念</h2>
+    <p>游戏名称：《世说·风雅集》<br>
+    人数：2-4人 | 时长：15-30分钟<br>
+    核心机制：玩家各自为战，通过卡牌互动削弱对手，保全并提升自己的“风骨”与“雅量”值，最终存活者胜利。</p>
+
+    <h2>📖 基本规则</h2>
+    <h3>生命系统</h3>
+    <p>每位玩家抽取一张角色牌，拥有初始风骨值与雅量值。<br>
+    风骨代表气节、道德坚守；雅量代表才情、胸襟气度。<br>
+    两者之和归零即出局。最后存活者获胜。</p>
+
+    <h3>抽卡规则</h3>
+    <p>牌堆由【言语/任诞/机锋/德行/雅量/锦囊/装备】组成，开局每名玩家抽4张手牌。<br>
+    每回合固定抽2张牌。手牌上限等于当前风骨值与雅量值之和。<br>
+    装备牌不占用手牌上限，每名玩家最多装备一张。</p>
+
+    <h3>回合流程</h3>
+    <p>清议（回合开始）→ 采言（摸2张牌）→ 清谈（出牌）→ 止言（弃牌）<br>
+    【言语】【任诞】每回合各限一次，【机锋】不限次数，角色主动技能每回合最多一次。</p>
+
+    <h3>拼点规则</h3>
+    <p>使用【机锋】时，与目标各亮一张手牌比点数，败者受到1点风骨和1点雅量伤害。<br>
+    【言语】【任诞】点数为1，【德行】【雅量】为2，【锦囊】为3，【装备】为4。</p>
+
+    <h2>👥 名士角色卡（8张）</h2>
+    <div class="card-grid">
+        <!-- 角色卡内容精简保留，与之前一致，此处不再重复大段代码，但会保留完整 -->
+        <div class="character-card"><div class="character-name">谢安 · 东山名相</div><div class="stats">风骨：●●  雅量：●●●</div><div class="skill"><span class="skill-name">【镇定自若】</span> 每回合一次，成为锦囊目标时，弃一张手牌使其无效。</div><div class="skill"><span class="skill-name">【镇以和靖】</span> 一轮内累计受≥2点伤害，回合开始恢复1风骨。</div><div class="quote">"小儿辈大破贼。"</div></div>
+        <div class="character-card"><div class="character-name">嵇康 · 竹林狂士</div><div class="stats">风骨：●●●●  雅量：●</div><div class="skill"><span class="skill-name">【广陵绝响】</span> 弃至多2张手牌，自损等量风骨，对他人造成等量伤害。</div><div class="skill"><span class="skill-name">【顾视日影】</span> 风骨降至1时，【言语】【机锋】伤害+1。</div><div class="quote">"《广陵散》于今绝矣！"</div></div>
+        <div class="character-card"><div class="character-name">王羲之 · 书圣逸少</div><div class="stats">风骨：●●  雅量：●●●</div><div class="skill"><span class="skill-name">【兰亭集序】</span> 弃任意张手牌，抽等量+1张牌。</div><div class="skill"><span class="skill-name">【坦腹东床】</span> 成为【言语】【任诞】目标时，若手牌未满，摸一张牌。</div><div class="quote">"群贤毕至，少长咸集。"</div></div>
+        <div class="character-card"><div class="character-name">刘伶 · 酒中仙</div><div class="stats">风骨：●  雅量：●●●●</div><div class="skill"><span class="skill-name">【鹿车携酒】</span> 每回合一次，弃装备牌，抽两张牌。</div><div class="skill"><span class="skill-name">【死便埋我】</span> 濒死受【任诞】伤害，恢复1雅量；装备【酒】时【任诞】额外恢复1雅量。</div><div class="quote">"死便掘地以埋。"</div></div>
+        <div class="character-card"><div class="character-name">阮籍 · 青眼狂生</div><div class="stats">风骨：●  雅量：●●●●</div><div class="skill"><span class="skill-name">【青白眼】</span> 指定一名角色，青眼：使其下次受伤无效；白眼：你对其下次伤害+1。</div><div class="skill"><span class="skill-name">【穷途之哭】</span> 手牌为0时，摸三张牌，下次伤害+1。</div><div class="quote">"能为青白眼，见凡俗之士，以白眼对之。"</div></div>
+        <div class="character-card"><div class="character-name">谢道韫 · 咏絮才女</div><div class="stats">风骨：●●  雅量：●●●</div><div class="skill"><span class="skill-name">【咏絮之才】</span> 展示任意手牌，从牌堆底抽等量牌，可将【言语】【机锋】置于角色牌上增加手牌上限。</div><div class="skill"><span class="skill-name">【林下之风】</span> 成为【言语】【任诞】目标时，移去一张“絮”令其无效。</div><div class="quote">"未若柳絮因风起。"</div></div>
+        <div class="character-card"><div class="character-name">王戎 · 竹林吝啬</div><div class="stats">风骨：●●●  雅量：●●</div><div class="skill"><span class="skill-name">【钻李固本】</span> 令一名其他角色手牌上限-1，若其超限则弃一张牌，你摸一张。</div><div class="skill"><span class="skill-name">【算入毫末】</span> 受到伤害后，若来源手牌多于你，其需弃一张牌，否则你回复1雅量。</div><div class="quote">"王戎有好李，卖之，恐人得其种，恒钻其核。"</div></div>
+        <div class="character-card"><div class="character-name">支遁 · 林下高僧</div><div class="stats">风骨：●●●  雅量：●●</div><div class="skill"><span class="skill-name">【即非即是】</span> 指定一名角色，使其对你造成的第一次伤害无效，你获得其一张手牌。</div><div class="skill"><span class="skill-name">【玄言转业】</span> 受【言语】【任诞】伤害时，令伤害-1或让来源弃一张牌。</div><div class="quote">"身与君别多年，君义言了不长进。"</div></div>
+    </div>
+
+    <h2>📚 行动卡牌</h2>
+    <h3>基础攻击防御卡</h3>
+    <ul class="rule-list">
+        <li><strong>【言语】×8</strong>：对目标造成1点风骨伤害</li>
+        <li><strong>【任诞】×8</strong>：对目标造成1点雅量伤害</li>
+        <li><strong>【机锋】×4</strong>：拼点，败者受1风骨+1雅量伤害</li>
+        <li><strong>【德行】×8</strong>：回复1点风骨</li>
+        <li><strong>【雅量】×8</strong>：回复1点雅量</li>
+    </ul>
+
+    <h3>🎭 锦囊卡（12张）—— 完整效果</h3>
+    <div class="trick-card"><div class="trick-name">【泰山桂树】</div>出牌阶段，对所有角色使用。直到你的下个回合开始，所有角色受到的风骨伤害减1（至多减至0）。在此期间，每当你（即锦囊使用者）以外的角色受到伤害后，你可以摸一张牌。<br><span class="quote">"吾家君譬如桂树生泰山之阿，上有万仞之高，下有不测之深；上为甘露所沾，下为渊泉所润。"</span></div>
+    <div class="trick-card"><div class="trick-name">【覆巢之下】</div>出牌阶段，对你自身及一名其他角色使用。你与该角色均获得一个“覆巢”标记。拥有“覆巢”标记的角色在下两次弃牌时必须额外弃置一张牌。<br><span class="quote">"大人岂见覆巢之下复有完卵乎？"</span></div>
+    <div class="trick-card"><div class="trick-name">【清虚日来】</div>出牌阶段，对你自身使用。你须弃置任意张手牌（至少一张），获得“虚室生白”效果：你回复等同于弃牌数量的雅量（不超过雅量上限），然后摸一张牌。<br><span class="quote">"吾无所忧，直是清虚日来，滓秽日去耳。"</span></div>
+    <div class="trick-card"><div class="trick-name">【芝兰玉树】</div>指定一名角色，回复1点风骨，但其下一回合不能打出【言语】【任诞】。<br><span class="quote">"譬如芝兰玉树，欲使其生于阶庭耳。"</span></div>
+    <div class="trick-card"><div class="trick-name">【东山雅集】</div>出牌阶段，对所有角色使用。直到你的下个回合开始：每当任何角色的回合结束时，若其在该回合内未对其他角色造成伤害，则其可以摸一张牌。所有角色在弃牌阶段可少弃一张牌。<br><span class="quote">"出则渔弋山水，入则谈说属文，未尝有处世意也。"</span></div>
+    <div class="trick-card"><div class="trick-name">【掷果潘郎】</div>出牌阶段，对一名其他角色使用。比较你与该角色的当前雅量值。若你的雅量值较高，对方获得状态“心折”，直到其下回合开始，其无法将你选择为其使用的卡牌的目标。<br><span class="quote">"潘岳妙有姿容，好神情。少时挟弹出洛阳道，妇人遇者，莫不连手共萦之。"</span></div>
+    <div class="trick-card"><div class="trick-name">【颓然自放】</div>出牌阶段，对你自身使用。你获得状态“放达”，持续两个回合。当处于“放达”状态时，你的手牌上限无限。<br><span class="quote">"庾子嵩长不满七尺，腰带十围，颓然自放。"</span></div>
+    <div class="trick-card"><div class="trick-name">【责偿单衣】</div>出牌阶段，对一名其他角色使用。你选择手中任意一张手牌置入该角色的手牌区，然后该角色获得状态“负债”。当拥有“负债”状态的角色的回合开始时，其必须随机交给你一张牌（手牌或装备区的牌），然后“负债”状态移除。若其不交，则失去2点风骨。<br><span class="quote">"王戎俭吝，其从子婚，与一单衣，后更责之。"</span></div>
+    <div class="trick-card"><div class="trick-name">【杀贾充以谢天下】</div>出牌阶段，对一名当前风骨值最低的角色使用。该角色须展示其所有手牌。若其中没有【德行】牌，你对其造成2点伤害；若有，则改为该角色弃置所有【言语】与【任诞】牌。<br><span class="quote">"高贵乡公薨，内外喧哗。司马文王问侍中陈泰曰：'何以静之？'泰云：'唯杀贾充以谢天下。'"</span></div>
+    <div class="trick-card"><div class="trick-name">【励志改过】</div>出牌阶段，对自身使用。弃三张牌，然后回复一点雅量。<br><span class="quote">"且人患志之不立，亦何忧令名不彰邪？"</span></div>
+    <div class="trick-card"><div class="trick-name">【老骥咏志】</div>出牌阶段，对自身使用。须弃置所有展示牌中的【装备】牌，并使自身使用的下一张【言语】或【任诞】伤害翻倍。<br><span class="quote">"王处仲每酒后辄咏'老骥伏枥，志在千里。烈士暮年，壮心不已。'以如意打唾壶，壶口尽缺。"</span></div>
+    <div class="trick-card"><div class="trick-name">【大未必佳】</div>出牌阶段，对一名当前风骨与雅量之和大于其初始值的角色使用。该角色须选择一项：1. 将其风骨与雅量恢复至初始值；2. 弃置其所有装备牌。<br><span class="quote">"小时了了，大未必佳。"</span></div>
+
+    <h3>⚙️ 装备卡（4张）</h3>
+    <ul class="rule-list">
+        <li><strong>【麈尾】</strong>：使用【言语】时，伤害+1。</li>
+        <li><strong>【鹤氅裘】</strong>：手牌上限+2。</li>
+        <li><strong>【酒】</strong>：使用【任诞】时，伤害+1。</li>
+        <li><strong>【五石散】</strong>：【机锋】拼点成功，伤害+1，并恢复自身1点风骨。</li>
+    </ul>
+
+    <h2>🎨 设计说明与后续计划</h2>
+    <p>本游戏以《世说新语》为蓝本，将魏晋名士的“风骨”“雅量”转化为可操作的游戏资源，技能设计化用原文典故，力求在桌游中还原清谈、任诞的文化氛围。卡牌实体化已完成测试，目前正在丰富角色与锦囊卡，优化平衡性，并计划重新绘制卡面立绘（当前为AI生成初版）。</p>
+    <p>完整规则、卡牌列表及设计迭代记录可参见设计文档。本作品为本人独立完成的全套卡牌设计。</p>
+
+    <div class="back-link">
+        <a href="https://Coconut614.github.io/game-writing-portfolio/" target="_blank">← 返回作品集主页</a>
+    </div>
+    <footer>
+        叶静敏 · 作品集 · 丙午年
+    </footer>
+</div>
+</body>
+</html>
